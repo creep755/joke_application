@@ -17,8 +17,4 @@ public class MainService {
         return restTemplate.getForObject(url, String.class);
     }
 
-    public String getRandomJoke() {
-        String url = jokeApiUrl + "random";
-        return restTemplate.getForObject(url, String.class);
-    }
 }

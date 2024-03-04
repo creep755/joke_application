@@ -17,8 +17,4 @@ public class MainController {
         return mainService.getRandomJoke(action);
     }
 
-    @GetMapping("/random")
-    public String getRandomJoke() {
-        return mainService.getRandomJoke();
-    }
 }

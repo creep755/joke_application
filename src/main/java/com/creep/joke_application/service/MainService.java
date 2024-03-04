@@ -8,12 +8,12 @@ import org.springframework.web.client.RestTemplate;
 @AllArgsConstructor
 public class MainService {
 
-    private static  String jokeApiUrl = "https://official-joke-api.appspot.com/jokes/";
+    private static  String jokeApiUrl = "https://official-joke-api.appspot.com/jokes/{action}";
 
     private final RestTemplate restTemplate;
 
     public String getRandomJoke(String action) {
-        String url = jokeApiUrl + action;
+        String url = jokeApiUrl.replace("{action}",action);
         return restTemplate.getForObject(url, String.class);
     }
 

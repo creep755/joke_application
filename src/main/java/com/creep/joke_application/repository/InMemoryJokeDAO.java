@@ -5,11 +5,13 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.IntStream;
 
 @Repository
 public class InMemoryJokeDAO {
     private final List<Joke> jokeList = new ArrayList<>();
+    private Random rand = new Random();
     public Joke postJoke(Joke joke) {
         jokeList.add(joke);
         return joke;
@@ -18,13 +20,13 @@ public class InMemoryJokeDAO {
         return jokeList;
     }
     public Joke getRandomJoke() {
-        return jokeList.get((int) (Math.random() * jokeList.size()));
+        return jokeList.get(rand.nextInt(0,jokeList.size()));
     }
     public Joke getRandomJokeByType(String type) {
         return jokeList.stream()
                 .filter(element -> element.getType().equals(type))
                 .toList()
-                .get((int) (Math.random() * jokeList.size()));
+                .get(rand.nextInt(0, jokeList.size()));
 
     }
     public Joke updateJokeBySetup(Joke joke) {

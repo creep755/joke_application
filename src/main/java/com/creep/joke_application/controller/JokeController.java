@@ -14,7 +14,7 @@ import java.util.List;
 public class JokeController {
 
     private final JokeService service;
-    @PostMapping("post")
+    @PostMapping()
     public Joke postJoke(@RequestBody Joke joke) {
         return service.postJoke(joke);
     }
@@ -30,11 +30,11 @@ public class JokeController {
     public Joke getRandomJokeByType(@PathVariable String type) {
         return service.getRandomJokeByType(type);
     }
-    @PutMapping("update-joke")
+    @PutMapping()
     public Joke updateJokeBySetup(@RequestBody Joke joke) {
         return service.updateJokeBySetup(joke);
     }
-    @DeleteMapping("delete-joke")
+    @DeleteMapping()
     public void deleteJoke(@RequestBody Joke joke) {
         service.deleteJoke(joke);
     }

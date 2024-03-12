@@ -1,11 +1,7 @@
 package com.creep.joke_application.service;
 
-
 import com.creep.joke_application.model.Joke;
-
 import org.springframework.stereotype.Service;
-
-
 import java.util.List;
 
 @Service

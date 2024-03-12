@@ -11,7 +11,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/v1/jokes")
-public class MainController {
+public class JokeController {
 
     private final JokeService service;
     @PostMapping("post")

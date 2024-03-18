@@ -1,44 +1,48 @@
 package com.creep.joke_application.service.impl;
 
 import com.creep.joke_application.model.Joke;
-import com.creep.joke_application.repository.InMemoryJokeDAO;
+import com.creep.joke_application.model.JokeRepository;
 import com.creep.joke_application.service.JokeService;
 import lombok.AllArgsConstructor;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 @AllArgsConstructor
-public class InMemoryJokeServiceImpl implements JokeService {
-    private final InMemoryJokeDAO repository;
+@Primary
+public class JokeServiceImpl implements JokeService {
+
+    private final JokeRepository repository;
 
     @Override
     public Joke postJoke(Joke joke) {
-        return repository.postJoke(joke);
+        return repository.save(joke);
     }
 
     @Override
     public List<Joke> getAllJokes() {
-        return repository.getAllJokes();
+        return repository.findAll();
     }
 
- /*   @Override
+/*    @Override
     public Joke getRandomJoke() {
         return repository.getRandomJoke();
     }*/
 
-/*    @Override
+ /*   @Override
     public Joke getRandomJokeByType(String type) {
         return repository.getRandomJokeByType(type);
     }*/
 
     @Override
     public Joke updateJokeById(Joke newJoke) {
-        return repository.updateJokeById(newJoke);
+        return repository.save(newJoke);
     }
 
     @Override
     public void deleteJoke(Joke joke) {
-        repository.deleteJoke(joke);
+        repository.delete(joke);
     }
 }

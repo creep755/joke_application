@@ -8,8 +8,8 @@ import java.util.List;
 public interface JokeService {
     Joke postJoke(Joke joke);
     List<Joke> getAllJokes();
-  //  Joke getRandomJoke();
-  //  Joke getRandomJokeByType(String type);
+    Joke getRandomJoke();
+    Joke getRandomJokeByType(String type);
     Joke updateJokeById(Joke newJoke);
     void deleteJoke(Joke joke);
 

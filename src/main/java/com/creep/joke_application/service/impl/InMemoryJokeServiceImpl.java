@@ -22,15 +22,14 @@ public class InMemoryJokeServiceImpl implements JokeService {
         return repository.getAllJokes();
     }
 
- /*   @Override
+    @Override
     public Joke getRandomJoke() {
         return repository.getRandomJoke();
-    }*/
-
-/*    @Override
+    }
+    @Override
     public Joke getRandomJokeByType(String type) {
         return repository.getRandomJokeByType(type);
-    }*/
+    }
 
     @Override
     public Joke updateJokeById(Joke newJoke) {

@@ -22,14 +22,14 @@ public class JokeController {
     public List<Joke> getAllJokes() {
         return service.getAllJokes();
     }
-/*    @GetMapping("random")
+    @GetMapping("random")
     public Joke getRandomJoke() {
         return service.getRandomJoke();
-    }*/
-/*    @GetMapping("random/{type}")
+    }
+    @GetMapping("random/{type}")
     public Joke getRandomJokeByType(@PathVariable String type) {
         return service.getRandomJokeByType(type);
-    }*/
+    }
     @PutMapping()
     public Joke updateJokeBySetup(@RequestBody Joke joke) {
         return service.updateJokeById(joke);

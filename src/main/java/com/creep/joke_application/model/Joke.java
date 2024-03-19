@@ -1,9 +1,6 @@
 package com.creep.joke_application.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Data
@@ -11,11 +8,16 @@ import lombok.*;
 @Table(name = "jokes")
 public class Joke {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String lang;
     private String type;
-    private String author;
+
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private Author author;
+
     private String setup;
     private String punchline;
 }

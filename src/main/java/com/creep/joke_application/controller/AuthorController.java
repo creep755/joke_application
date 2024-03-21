@@ -3,7 +3,6 @@ package com.creep.joke_application.controller;
 import com.creep.joke_application.model.Author;
 import com.creep.joke_application.service.AuthorService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

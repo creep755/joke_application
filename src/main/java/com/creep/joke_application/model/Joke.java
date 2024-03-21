@@ -1,6 +1,5 @@
 package com.creep.joke_application.model;
 
-import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.*;
 

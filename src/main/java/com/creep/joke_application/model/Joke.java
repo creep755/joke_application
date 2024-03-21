@@ -1,7 +1,10 @@
 package com.creep.joke_application.model;
 
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.Set;
 
 @Data
 @Entity
@@ -17,7 +20,8 @@ public class Joke {
     @ManyToOne
     @JoinColumn(name = "author_id")
     private Author author;
-
+    @ManyToMany(mappedBy = "jokes")
+    private Set<JokeCollection> jokeCollections;
     private String setup;
     private String punchline;
 }

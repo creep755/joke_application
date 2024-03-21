@@ -1,16 +1,18 @@
 package com.creep.joke_application.service;
 
 import com.creep.joke_application.model.Joke;
+import com.creep.joke_application.model.dto.JokeDTO;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
 public interface JokeService {
-    Joke postJoke(Joke joke);
-    List<Joke> getAllJokes();
-    Joke getRandomJoke();
-    Joke getRandomJokeByType(String type);
-    Joke updateJokeById(Joke newJoke);
+    JokeDTO postJoke(Joke joke);
+    List<JokeDTO> getAllJokes();
+    JokeDTO findJokeById(Long id);
+    JokeDTO getRandomJoke();
+    JokeDTO getRandomJokeByType(String type);
+    JokeDTO updateJokeById(Joke newJoke);
     void deleteJoke(Joke joke);
 
 }

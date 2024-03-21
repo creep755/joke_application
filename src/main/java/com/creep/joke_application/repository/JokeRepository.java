@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface JokeRepository extends JpaRepository<Joke, Long> {
     List<Joke> findAllByType(String type);
+    Joke findJokeById(Long id);
 }

@@ -19,6 +19,9 @@ public class InMemoryJokeDAO {
     public List<Joke> getAllJokes() {
         return jokeList;
     }
+    public Joke findJokeById(Long id){
+        return jokeList.get(id.intValue());
+    }
     public Joke getRandomJoke() {
         return jokeList.get(rand.nextInt(0,jokeList.size()));
     }

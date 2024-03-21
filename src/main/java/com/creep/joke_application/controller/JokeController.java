@@ -1,6 +1,7 @@
 package com.creep.joke_application.controller;
 
 import com.creep.joke_application.model.Joke;
+import com.creep.joke_application.model.dto.JokeDTO;
 import com.creep.joke_application.service.JokeService;
 
 import lombok.AllArgsConstructor;
@@ -15,23 +16,23 @@ public class JokeController {
 
     private final JokeService service;
     @PostMapping()
-    public Joke postJoke(@RequestBody Joke joke) {
+    public JokeDTO postJoke(@RequestBody Joke joke) {
         return service.postJoke(joke);
     }
     @GetMapping()
-    public List<Joke> getAllJokes() {
+    public List<JokeDTO> getAllJokes() {
         return service.getAllJokes();
     }
     @GetMapping("random")
-    public Joke getRandomJoke() {
+    public JokeDTO getRandomJoke() {
         return service.getRandomJoke();
     }
     @GetMapping("random/{type}")
-    public Joke getRandomJokeByType(@PathVariable String type) {
+    public JokeDTO getRandomJokeByType(@PathVariable String type) {
         return service.getRandomJokeByType(type);
     }
     @PutMapping()
-    public Joke updateJokeBySetup(@RequestBody Joke joke) {
+    public JokeDTO updateJokeById(@RequestBody Joke joke) {
         return service.updateJokeById(joke);
     }
     @DeleteMapping()

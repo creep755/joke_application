@@ -1,12 +1,15 @@
 package com.creep.joke_application.service.impl;
 
+import com.creep.joke_application.mapper.JokeMapper;
 import com.creep.joke_application.model.Joke;
+import com.creep.joke_application.model.dto.JokeDTO;
 import com.creep.joke_application.repository.JokeRepository;
 import com.creep.joke_application.service.JokeService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -19,30 +22,40 @@ public class JokeServiceImpl implements JokeService {
     private Random rand = new Random();
 
     @Override
-    public Joke postJoke(Joke joke) {
-        return repository.save(joke);
+    public JokeDTO postJoke(Joke joke) {
+        return JokeMapper.toDTO(repository.save(joke));
     }
 
     @Override
-    public List<Joke> getAllJokes() {
-        return repository.findAll();
+    public List<JokeDTO> getAllJokes() {
+        List<Joke> jokeList = repository.findAll();
+        List<JokeDTO> jokeDTOList = new ArrayList<>();
+        for (int i = 0; i < jokeList.size(); i++) {
+            jokeDTOList.add(JokeMapper.toDTO(jokeList.get(i)));
+        }
+        return jokeDTOList;
     }
 
     @Override
-    public Joke getRandomJoke() {
+    public JokeDTO findJokeById(Long id) {
+         return JokeMapper.toDTO(repository.findJokeById(id));
+    }
+
+    @Override
+    public JokeDTO getRandomJoke() {
         var jokeList = repository.findAll();
-        return jokeList.get(rand.nextInt(0,jokeList.size()));
+        return JokeMapper.toDTO(jokeList.get(rand.nextInt(0,jokeList.size())));
     }
 
    @Override
-    public Joke getRandomJokeByType(String type) {
+    public JokeDTO getRandomJokeByType(String type) {
        var jokeList = repository.findAllByType(type);
-       return jokeList.get(rand.nextInt(0, jokeList.size()));
+       return JokeMapper.toDTO(jokeList.get(rand.nextInt(0, jokeList.size())));
     }
 
     @Override
-    public Joke updateJokeById(Joke newJoke) {
-        return repository.save(newJoke);
+    public JokeDTO updateJokeById(Joke newJoke) {
+        return JokeMapper.toDTO(repository.save(newJoke));
     }
 
     @Override

@@ -2,15 +2,19 @@ package com.creep.joke_application.model.dto;
 
 import com.creep.joke_application.model.Author;
 import com.creep.joke_application.model.Joke;
-import lombok.Data;
+import lombok.*;
 
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class JokeCollectionDTO {
     private Long id;
     private String name;
     private String description;
-    private Author author;
-    private Set<Joke> jokes;
+    private AuthorDTO author;
+    private Set<JokeDTO> jokes;
 }

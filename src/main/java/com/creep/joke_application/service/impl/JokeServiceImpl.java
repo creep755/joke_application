@@ -23,7 +23,8 @@ public class JokeServiceImpl implements JokeService {
 
     @Override
     public JokeDTO postJoke(Joke joke) {
-        return JokeMapper.toDTO(repository.save(joke));
+        JokeDTO jokeDTO = JokeMapper.toDTO(repository.save(joke));
+        return jokeDTO;
     }
 
     @Override

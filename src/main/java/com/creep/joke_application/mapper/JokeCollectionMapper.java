@@ -3,7 +3,11 @@ package com.creep.joke_application.mapper;
 import com.creep.joke_application.model.JokeCollection;
 import com.creep.joke_application.model.dto.JokeCollectionDTO;
 
+import com.creep.joke_application.model.dto.JokeDTO;
 import org.springframework.stereotype.Component;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Component
 public class JokeCollectionMapper {
@@ -17,19 +21,12 @@ public class JokeCollectionMapper {
         jokeCollectionDTO.setId(jokeCollection.getId());
         jokeCollectionDTO.setName(jokeCollection.getName());
         jokeCollectionDTO.setDescription(jokeCollection.getDescription());
-        jokeCollectionDTO.setJokes(jokeCollection.getJokes());
-        jokeCollectionDTO.setAuthor(jokeCollection.getAuthor());
-        return jokeCollectionDTO;
-    }
-    public static JokeCollection toEntity(JokeCollectionDTO jokeCollectionDTO){
-        if(jokeCollectionDTO == null) {
-            return null;
+        Set<JokeDTO> jokesDTO = new HashSet<>();
+        for (int i = 0; i < jokeCollection.getJokes().size();i++){
+            jokesDTO.add(JokeMapper.toDTO(jokeCollection.getJokes().stream().toList().get(i)));
         }
-        JokeCollection jokeCollection = new JokeCollection();
-        jokeCollection.setId(jokeCollectionDTO.getId());
-        jokeCollection.setName(jokeCollectionDTO.getName());
-        jokeCollection.setDescription(jokeCollectionDTO.getDescription());
-        jokeCollection.setJokes(jokeCollectionDTO.getJokes());
-        return jokeCollection;
+        jokeCollectionDTO.setJokes(jokesDTO);
+        jokeCollectionDTO.setAuthor(AuthorMapper.toDTO(jokeCollection.getAuthor()));
+        return jokeCollectionDTO;
     }
 }

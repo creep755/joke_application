@@ -5,7 +5,11 @@ import lombok.*;
 
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "jokes")
 public class Joke {
@@ -15,6 +19,7 @@ public class Joke {
 
     private String lang;
     private String type;
+
 
     @ManyToOne
     @JoinColumn(name = "author_id")

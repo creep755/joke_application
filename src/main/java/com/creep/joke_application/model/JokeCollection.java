@@ -1,13 +1,17 @@
 package com.creep.joke_application.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.util.Set;
 
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Data
-@Table(name = "joke_colletions")
+@Table(name = "collections")
 public class JokeCollection {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,8 +1,12 @@
 package com.creep.joke_application.model.dto;
 
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class AuthorDTO {
     private Long id;
     private String firstName;

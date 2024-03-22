@@ -19,7 +19,7 @@ public class JokeMapper {
         jokeDTO.setId(joke.getId());
         jokeDTO.setLang(joke.getLang());
         jokeDTO.setType(joke.getType());
-        jokeDTO.setAuthor(joke.getAuthor());
+        jokeDTO.setAuthor(AuthorMapper.toDTO(joke.getAuthor()));
         Set<Long> jokeCollectionsId = new HashSet<>();
         for(int i = 0; i< joke.getJokeCollections().size(); i++){
             jokeCollectionsId.add(joke.getJokeCollections().stream().toList().get(i).getId());

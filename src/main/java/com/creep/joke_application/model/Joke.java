@@ -20,7 +20,6 @@ public class Joke {
     private String lang;
     private String type;
 
-
     @ManyToOne
     @JoinColumn(name = "author_id")
     private Author author;

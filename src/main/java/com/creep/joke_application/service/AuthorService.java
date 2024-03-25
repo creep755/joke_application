@@ -6,6 +6,8 @@ import java.util.List;
 
 @Service
 public interface AuthorService {
+    //todo
+    // Use DTO!
     Author postAuthor(Author author);
     List<Author> getAllAuthors();
     Author getAuthorById(Long id);

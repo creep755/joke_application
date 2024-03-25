@@ -1,6 +1,5 @@
 package com.creep.joke_application.model.dto;
 
-import com.creep.joke_application.model.Author;
 import lombok.*;
 
 import java.util.Set;
@@ -11,6 +10,9 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class JokeDTO {
+    //todo переписать дто:
+    // сделать внутри два класса: .Response и .Request,
+    // которые содержат только нужные поля
     private Long id;
     private String lang;
     private String type;

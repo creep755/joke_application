@@ -7,6 +7,8 @@ import java.util.List;
 
 @Service
 public interface JokeService {
+    //todo
+    // Use DTO!
     JokeDTO postJoke(Joke joke);
     List<JokeDTO> getAllJokes();
     JokeDTO findJokeById(Long id);

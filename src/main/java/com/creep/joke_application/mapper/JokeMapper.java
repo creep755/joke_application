@@ -11,6 +11,8 @@ import java.util.Set;
 public class JokeMapper {
     private JokeMapper(){
     }
+    //todo
+    // добавить мапперы отдельно для .Response и .Request
     public static JokeDTO toDTO(Joke joke){
         if (joke == null) {
             return null;
@@ -20,11 +22,14 @@ public class JokeMapper {
         jokeDTO.setLang(joke.getLang());
         jokeDTO.setType(joke.getType());
         jokeDTO.setAuthor(AuthorMapper.toDTO(joke.getAuthor()));
-        Set<Long> jokeCollectionsId = new HashSet<>();
-        for(int i = 0; i< joke.getJokeCollections().size(); i++){
-            jokeCollectionsId.add(joke.getJokeCollections().stream().toList().get(i).getId());
+        if (joke.getJokeCollections() != null){
+            Set<Long> jokeCollectionsId = new HashSet<>();
+            for (int i = 0; i < joke.getJokeCollections().size(); i++) {
+                jokeCollectionsId.add(joke.getJokeCollections().stream().toList().get(i).getId());
+            }
+            jokeDTO.setJokeCollectionsId(jokeCollectionsId);
         }
-        jokeDTO.setJokeCollectionsId(jokeCollectionsId);
+
         jokeDTO.setSetup(joke.getSetup());
         jokeDTO.setPunchline(joke.getPunchline());
         return jokeDTO;

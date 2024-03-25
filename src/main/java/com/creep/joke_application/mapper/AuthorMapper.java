@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 public class AuthorMapper {
     private AuthorMapper(){
     }
+    //todo
+    // добавить мапперы отдельно для .Response и .Request
     public static AuthorDTO toDTO(Author author){
         if (author == null){
             return null;
@@ -18,16 +20,5 @@ public class AuthorMapper {
         authorDTO.setLastName(author.getLastName());
         authorDTO.setNation(author.getNation());
         return authorDTO;
-    }
-    public static Author toEntity(AuthorDTO authorDTO){
-        if (authorDTO == null){
-            return null;
-        }
-        Author author = new Author();
-        author.setId(authorDTO.getId());
-        author.setFirstName(authorDTO.getFirstName());
-        author.setLastName(authorDTO.getLastName());
-        author.setNation(authorDTO.getNation());
-        return author;
     }
 }

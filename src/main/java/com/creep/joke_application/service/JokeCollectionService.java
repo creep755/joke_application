@@ -9,6 +9,8 @@ import java.util.List;
 
 @Service
 public interface JokeCollectionService {
+    //todo
+    // Use DTO!
     JokeCollectionDTO postCollection(JokeCollection collection);
     List<JokeCollectionDTO> getAllCollections();
     JokeCollectionDTO getCollectionById(Long id);

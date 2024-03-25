@@ -12,11 +12,15 @@ import java.util.List;
 @RequestMapping("/api/v1/collections")
 public class JokeCollectionController {
     private final JokeCollectionService jokeCollectionService;
+    //todo
+    // добавить MainController который будет управлять всеми контроллерами (?)
     public JokeCollectionController(JokeCollectionService jokeCollectionService){
-        this.jokeCollectionService =jokeCollectionService;
+        this.jokeCollectionService = jokeCollectionService;
     }
     @PostMapping
     public JokeCollectionDTO postCollection(@RequestBody JokeCollection collection){
+        //todo
+        // переписать на дто
         return jokeCollectionService.postCollection(collection);
     }
 
@@ -32,14 +36,20 @@ public class JokeCollectionController {
 
     @PutMapping
     public JokeCollectionDTO updateJokeCollection(@RequestBody JokeCollection collection){
+        //todo
+        // переписать на дто
         return jokeCollectionService.updateCollection(collection);
     }
     @PostMapping("/add-joke/{id}")
     public JokeCollectionDTO addJoke(@PathVariable Long id, @RequestBody Joke joke){
+        //todo
+        // переписать используя два айдишника в параметрах (коллекции и шутки)
         return jokeCollectionService.addJoke(id, joke);
     }
     @PutMapping("/remove-joke/{id}")
     public void removeJoke(@PathVariable Long id, @RequestBody Joke joke){
+        //todo
+        // переписать используя два айдишника в параметрах (коллекции и шутки)
         jokeCollectionService.removeJokeById(id, joke);
     }
     @DeleteMapping("{id}")

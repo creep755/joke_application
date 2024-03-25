@@ -10,32 +10,40 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class AuthorServiseImpl implements AuthorService {
+public class AuthorServiceImpl implements AuthorService {
 
-    private final AuthorRepository repository;
+    private final AuthorRepository authorRepository;
 
     @Override
     public Author postAuthor(Author author) {
-        return repository.save(author);
+        //todo
+        // переписать на дто
+        return authorRepository.save(author);
     }
 
     @Override
     public List<Author> getAllAuthors() {
-        return repository.findAll();
+        //todo
+        // переписать на дто
+        return authorRepository.findAll();
     }
 
     @Override
     public Author getAuthorById(Long id) {
-        return repository.findAuthorById(id);
+        //todo
+        // переписать на дто
+        return authorRepository.findAuthorById(id);
     }
 
     @Override
     public Author updateAuthor(Author author) {
-        return repository.save(author);
+        //todo
+        // переписать на дто
+        return authorRepository.save(author);
     }
 
     @Override
     public void deleteAuthorById(Long id) {
-        repository.deleteAuthorById(id);
+        authorRepository.deleteAuthorById(id);
     }
 }

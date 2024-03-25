@@ -5,7 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class JokeApplication {
-
+	//todo
+	// оформить README
 	public static void main(String[] args) {
 		SpringApplication.run(JokeApplication.class, args);
 	}

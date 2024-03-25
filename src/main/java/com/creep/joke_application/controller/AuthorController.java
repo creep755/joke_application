@@ -2,35 +2,48 @@ package com.creep.joke_application.controller;
 
 import com.creep.joke_application.model.Author;
 import com.creep.joke_application.service.AuthorService;
-import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@AllArgsConstructor
 @RequestMapping("/api/v1/authors")
 public class AuthorController {
-    private final AuthorService service;
 
+    //todo
+    // добавить MainController который будет управлять всеми контроллерами (?)
+    private final AuthorService authorService;
+    public AuthorController(AuthorService authorService){
+        this.authorService = authorService;
+    }
     @PostMapping()
     public Author postAuthor(@RequestBody Author author){
-        return service.postAuthor(author);
+        //todo
+        // переписать на дто
+        return authorService.postAuthor(author);
     }
     @GetMapping()
     public List<Author> getAllAuthors(){
-        return service.getAllAuthors();
+        //todo
+        // переписать на дто
+        return authorService.getAllAuthors();
     }
     @GetMapping("{id}")
     public Author getAuthorById(@PathVariable Long id){
-        return service.getAuthorById(id);
+        //todo
+        // переписать на дто
+        return authorService.getAuthorById(id);
     }
     @PutMapping()
     public Author updateAuthor(@RequestBody Author author){
-        return service.updateAuthor(author);
+        //todo
+        // переписать на дто
+        return authorService.updateAuthor(author);
     }
     @DeleteMapping("{id}")
     public void deleteAuthorById(@PathVariable Long id){
-        service.deleteAuthorById(id);
+        //todo
+        // переписать на дто
+        authorService.deleteAuthorById(id);
     }
 }

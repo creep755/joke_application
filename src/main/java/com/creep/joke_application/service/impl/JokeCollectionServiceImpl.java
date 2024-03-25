@@ -16,48 +16,63 @@ import java.util.List;
 @AllArgsConstructor
 public class JokeCollectionServiceImpl implements JokeCollectionService {
 
-    private final JokeCollectionRepository repository;
+    //todo
+    // добавить методы добавления/удаления автора
+    private final JokeCollectionRepository jokeCollectionRepository;
     @Override
     public JokeCollectionDTO postCollection(JokeCollection collection) {
-        return JokeCollectionMapper.toDTO(repository.save(collection));
+        //todo
+        // переписать на дто
+        // пофиксить ошибку 500
+        return JokeCollectionMapper.toDTO(jokeCollectionRepository.save(collection));
     }
 
     @Override
     public List<JokeCollectionDTO> getAllCollections() {
+        //todo
+        // переписать чтобы было красиво (мб через stream)
         List<JokeCollectionDTO> jokeCollectionDTOList = new ArrayList<>();
-        List<JokeCollection> jokeCollectionList = repository.findAll();
-        for (int i = 0; i < jokeCollectionList.size(); i++){
-            jokeCollectionDTOList.add(JokeCollectionMapper.toDTO(jokeCollectionList.get(i)));
+        List<JokeCollection> jokeCollectionList = jokeCollectionRepository.findAll();
+        for (JokeCollection jokeCollection : jokeCollectionList) {
+            jokeCollectionDTOList.add(JokeCollectionMapper.toDTO(jokeCollection));
         }
         return jokeCollectionDTOList;
     }
 
     @Override
     public JokeCollectionDTO getCollectionById(Long id) {
-        return JokeCollectionMapper.toDTO(repository.findJokeCollectionById(id));
+        return JokeCollectionMapper.toDTO(jokeCollectionRepository.findJokeCollectionById(id));
     }
 
     @Override
     public JokeCollectionDTO updateCollection(JokeCollection collection) {
-        return JokeCollectionMapper.toDTO(repository.save(collection));
+        //todo
+        // переписать на дто
+        return JokeCollectionMapper.toDTO(jokeCollectionRepository.save(collection));
     }
 
     @Override
     public JokeCollectionDTO addJoke(Long id, Joke joke) {
-       JokeCollection jokeCollection = repository.findJokeCollectionById(id);
+        //todo
+        // переписать на дто
+       JokeCollection jokeCollection = jokeCollectionRepository.findJokeCollectionById(id);
        jokeCollection.getJokes().add(joke);
-       return JokeCollectionMapper.toDTO(repository.save(jokeCollection));
+       return JokeCollectionMapper.toDTO(jokeCollectionRepository.save(jokeCollection));
     }
 
     @Override
     public void removeJokeById(Long id, Joke joke) {
-        JokeCollection jokeCollection = repository.findJokeCollectionById(id);
+        //todo
+        // переписать на два айдишника (шутки и коллекции)
+        JokeCollection jokeCollection = jokeCollectionRepository.findJokeCollectionById(id);
         jokeCollection.getJokes().remove(joke);
-        repository.save(jokeCollection);
+        jokeCollectionRepository.save(jokeCollection);
     }
 
     @Override
     public void deleteCollectionById(Long id) {
-        repository.deleteById(id);
+        //todo
+        // сначала проверить есть ли связи (автор, шутки) если есть то разорвать (?)
+        jokeCollectionRepository.deleteById(id);
     }
 }

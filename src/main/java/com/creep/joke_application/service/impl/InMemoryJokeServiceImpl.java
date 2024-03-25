@@ -14,7 +14,8 @@ import java.util.List;
 @AllArgsConstructor
 public class InMemoryJokeServiceImpl implements JokeService {
     private final InMemoryJokeDAO repository;
-
+    //todo
+    // убедиться что этот класс вообще нужен, если нет - удалить
     @Override
     public JokeDTO postJoke(Joke joke) {
         return JokeMapper.toDTO(repository.postJoke(joke));
@@ -24,8 +25,8 @@ public class InMemoryJokeServiceImpl implements JokeService {
     public List<JokeDTO> getAllJokes() {
         List<Joke> jokeList = repository.getAllJokes();
         List<JokeDTO> jokeDTOList = new ArrayList<>();
-        for (int i = 0; i < jokeList.size(); i++) {
-            jokeDTOList.add(JokeMapper.toDTO(jokeList.get(i)));
+        for (Joke joke : jokeList) {
+            jokeDTOList.add(JokeMapper.toDTO(joke));
         }
         return jokeDTOList;
     }

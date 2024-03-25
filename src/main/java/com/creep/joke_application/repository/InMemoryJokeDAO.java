@@ -10,8 +10,11 @@ import java.util.stream.IntStream;
 
 @Repository
 public class InMemoryJokeDAO {
+
+    //todo
+    // убедиться что этот класс нужен, если не - удалить
     private final List<Joke> jokeList = new ArrayList<>();
-    private Random rand = new Random();
+    private final Random rand = new Random();
     public Joke postJoke(Joke joke) {
         jokeList.add(joke);
         return joke;

@@ -23,7 +23,6 @@ public class JokeServiceImpl implements JokeService {
     private final JokeRepository jokeRepository;
     private Random rand;
     private final AuthorService authorService;
-    //private final JokeCollectionService jokeCollectionService;
     @Override
     public JokeResponseDTO postJoke(JokeRequestDTO jokeRequestDTO) {
         Joke joke = JokeMapper.toEntity(jokeRequestDTO);

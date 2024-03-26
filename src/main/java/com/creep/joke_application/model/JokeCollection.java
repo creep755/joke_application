@@ -19,7 +19,7 @@ public class JokeCollection {
 
     private String title;
     private String description;
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.EAGER)
     @JoinTable(
             name = "joke_collection",
             joinColumns = @JoinColumn(name = "collection_id"),

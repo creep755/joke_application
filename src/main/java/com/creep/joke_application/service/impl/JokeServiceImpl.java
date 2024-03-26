@@ -3,6 +3,7 @@ package com.creep.joke_application.service.impl;
 import com.creep.joke_application.mapper.JokeMapper;
 import com.creep.joke_application.model.Author;
 import com.creep.joke_application.model.Joke;
+import com.creep.joke_application.model.JokeCollection;
 import com.creep.joke_application.model.dto.JokeRequestDTO;
 import com.creep.joke_application.model.dto.JokeResponseDTO;
 import com.creep.joke_application.repository.JokeRepository;
@@ -22,6 +23,7 @@ public class JokeServiceImpl implements JokeService {
     private final JokeRepository jokeRepository;
     private Random rand;
     private final AuthorService authorService;
+    //private final JokeCollectionService jokeCollectionService;
     @Override
     public JokeResponseDTO postJoke(JokeRequestDTO jokeRequestDTO) {
         Joke joke = JokeMapper.toEntity(jokeRequestDTO);
@@ -101,6 +103,12 @@ public class JokeServiceImpl implements JokeService {
     public void deleteJoke(Long id) {
         Joke joke = jokeRepository.findJokeById(id);
         if (joke != null) {
+            if(joke.getJokeCollections()!=null){
+                List<JokeCollection> collections= joke.getJokeCollections().stream().toList();
+                for (JokeCollection collection: collections){
+                    collection.getJokes().remove(joke);
+                }
+            }
             jokeRepository.delete(joke);
         }
     }

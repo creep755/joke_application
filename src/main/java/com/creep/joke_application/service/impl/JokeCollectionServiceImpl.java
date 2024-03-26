@@ -97,6 +97,14 @@ public class JokeCollectionServiceImpl implements JokeCollectionService {
         return JokeCollectionMapper.toDTO(jokeCollectionRepository.save(jokeCollection));
     }
 
+    @Override
+    public JokeCollection save(JokeCollection jokeCollection) {
+        if(jokeCollection == null){
+            return null;
+        }
+        return jokeCollectionRepository.save(jokeCollection);
+    }
+
 
     @Override
     public void deleteCollectionById(Long id) {

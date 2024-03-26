@@ -1,7 +1,7 @@
 package com.creep.joke_application.controller;
 
-import com.creep.joke_application.model.Joke;
-import com.creep.joke_application.model.dto.JokeDTO;
+import com.creep.joke_application.model.dto.JokeRequestDTO;
+import com.creep.joke_application.model.dto.JokeResponseDTO;
 import com.creep.joke_application.service.JokeService;
 
 import org.springframework.web.bind.annotation.*;
@@ -12,44 +12,43 @@ import java.util.List;
 @RequestMapping("/api/v1/jokes")
 public class JokeController {
     private final JokeService jokeService;
-    //todo
-    // добавить MainController который будет управлять всеми контроллерами (?)
-    // добавиить енд-поинт addAuthor
     public JokeController(JokeService jokeService){
         this.jokeService = jokeService;
     }
     @PostMapping()
-    public JokeDTO postJoke(@RequestBody Joke joke) {
-        //todo
-        // переписать чтобы запрос был через дто
-        return jokeService.postJoke(joke);
+    public JokeResponseDTO postJoke(@RequestBody JokeRequestDTO jokeRequestDTO) {
+        return jokeService.postJoke(jokeRequestDTO);
     }
     @GetMapping()
-    public List<JokeDTO> getAllJokes() {
+    public List<JokeResponseDTO> getAllJokes() {
         return jokeService.getAllJokes();
     }
     @GetMapping("{id}")
-    public JokeDTO getJokeById(@PathVariable Long id){
+    public JokeResponseDTO getJokeById(@PathVariable Long id){
         return jokeService.findJokeById(id);
     }
     @GetMapping("random")
-    public JokeDTO getRandomJoke() {
+    public JokeResponseDTO getRandomJoke() {
         return jokeService.getRandomJoke();
     }
     @GetMapping("random/{type}")
-    public JokeDTO getRandomJokeByType(@PathVariable String type) {
+    public JokeResponseDTO getRandomJokeByType(@PathVariable String type) {
         return jokeService.getRandomJokeByType(type);
     }
-    @PutMapping()
-    public JokeDTO updateJokeById(@RequestBody Joke joke) {
-        // todo
-        //  переписать на параментры пути и дто
-        return jokeService.updateJokeById(joke);
+    @PutMapping("{id}")
+    public JokeResponseDTO updateJokeById(@PathVariable Long id,@RequestBody JokeRequestDTO jokeRequestDTO) {
+        return jokeService.updateJokeById(id, jokeRequestDTO);
     }
-    @DeleteMapping()
-    public void deleteJoke(@RequestBody Joke joke) {
-        jokeService.deleteJoke(joke);
-        // todo
-        //  переписать чтобы запрос принимал только айди
+    @PutMapping("/add-author/{jokeId}")
+    public JokeResponseDTO addAuthor(@PathVariable Long jokeId, @RequestParam Long authorId){
+        return jokeService.addAuthor(jokeId,authorId);
+    }
+    @PutMapping("/remove-author/{id}")
+    public JokeResponseDTO removeAuthor(@PathVariable Long id){
+        return jokeService.removeAuthor(id);
+    }
+    @DeleteMapping("{id}")
+    public void deleteJoke(@PathVariable Long id) {
+        jokeService.deleteJoke(id);
     }
 }

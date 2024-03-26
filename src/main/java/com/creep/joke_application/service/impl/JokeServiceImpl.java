@@ -1,12 +1,14 @@
 package com.creep.joke_application.service.impl;
 
 import com.creep.joke_application.mapper.JokeMapper;
+import com.creep.joke_application.model.Author;
 import com.creep.joke_application.model.Joke;
-import com.creep.joke_application.model.dto.JokeDTO;
+import com.creep.joke_application.model.dto.JokeRequestDTO;
+import com.creep.joke_application.model.dto.JokeResponseDTO;
 import com.creep.joke_application.repository.JokeRepository;
+import com.creep.joke_application.service.AuthorService;
 import com.creep.joke_application.service.JokeService;
 import lombok.AllArgsConstructor;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,59 +17,91 @@ import java.util.Random;
 
 @Service
 @AllArgsConstructor
-@Primary
 public class JokeServiceImpl implements JokeService {
 
     private final JokeRepository jokeRepository;
     private Random rand;
-    //todo
-    // добавить методы добавления/удаления автора и коллекции
+    private final AuthorService authorService;
     @Override
-    public JokeDTO postJoke(Joke joke) {
-        //todo
-        // переписать с использованием дто в параметрах
-        // пофиксить ошибку 500
+    public JokeResponseDTO postJoke(JokeRequestDTO jokeRequestDTO) {
+        Joke joke = JokeMapper.toEntity(jokeRequestDTO);
+        if (joke == null) {
+            return null;
+        }
         return JokeMapper.toDTO(jokeRepository.save(joke));
     }
 
     @Override
-    public List<JokeDTO> getAllJokes() {
+    public List<JokeResponseDTO> getAllJokes() {
         List<Joke> jokeList = jokeRepository.findAll();
-        List<JokeDTO> jokeDTOList = new ArrayList<>();
+        List<JokeResponseDTO> jokeResponseDTOList = new ArrayList<>();
         for (Joke joke : jokeList) {
-            jokeDTOList.add(JokeMapper.toDTO(joke));
+            jokeResponseDTOList.add(JokeMapper.toDTO(joke));
         }
-        return jokeDTOList;
+        return jokeResponseDTOList;
     }
 
     @Override
-    public JokeDTO findJokeById(Long id) {
+    public JokeResponseDTO findJokeById(Long id) {
          return JokeMapper.toDTO(jokeRepository.findJokeById(id));
     }
 
     @Override
-    public JokeDTO getRandomJoke() {
+    public JokeResponseDTO getRandomJoke() {
         var jokeList = jokeRepository.findAll();
         return JokeMapper.toDTO(jokeList.get(rand.nextInt(0,jokeList.size())));
     }
 
    @Override
-    public JokeDTO getRandomJokeByType(String type) {
+    public JokeResponseDTO getRandomJokeByType(String type) {
        var jokeList = jokeRepository.findAllByType(type);
        return JokeMapper.toDTO(jokeList.get(rand.nextInt(0, jokeList.size())));
     }
 
     @Override
-    public JokeDTO updateJokeById(Joke newJoke) {
-        //todo
-        // переписать с использованием дто и айди в аргументах
-        return JokeMapper.toDTO(jokeRepository.save(newJoke));
+    public Joke getRawJokeById(Long id) {
+        return jokeRepository.findJokeById(id);
     }
 
     @Override
-    public void deleteJoke(Joke joke) {
-        //todo
-        // переписать с использованием в параметрах только айди
-        jokeRepository.delete(joke);
+    public JokeResponseDTO updateJokeById(Long id, JokeRequestDTO jokeRequestDTO) {
+        Joke joke = jokeRepository.findJokeById(id);
+        if (joke == null) {
+            return null;
+        }
+        joke.setLang(jokeRequestDTO.getLang());
+        joke.setType(jokeRequestDTO.getType());
+        joke.setSetup(jokeRequestDTO.getSetup());
+        joke.setPunchline(jokeRequestDTO.getPunchline());
+        return JokeMapper.toDTO(jokeRepository.save(joke));
+    }
+
+    @Override
+    public JokeResponseDTO addAuthor(Long jokeId, Long authorId) {
+        Joke joke = jokeRepository.findJokeById(jokeId);
+        Author author = authorService.getRawAuthorById(authorId);
+        if (joke == null || author == null) {
+            return null;
+        }
+        joke.setAuthor(author);
+        return JokeMapper.toDTO(jokeRepository.save(joke));
+    }
+
+    @Override
+    public JokeResponseDTO removeAuthor(Long id) {
+        Joke joke = jokeRepository.findJokeById(id);
+        if (joke == null || joke.getAuthor() == null) {
+            return null;
+        }
+        joke.setAuthor(null);
+        return JokeMapper.toDTO(jokeRepository.save(joke));
+    }
+
+    @Override
+    public void deleteJoke(Long id) {
+        Joke joke = jokeRepository.findJokeById(id);
+        if (joke != null) {
+            jokeRepository.delete(joke);
+        }
     }
 }

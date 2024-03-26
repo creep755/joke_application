@@ -17,7 +17,4 @@ public class Author {
     private String firstName;
     private String lastName;
     private String nation;
-    //todo
-    // добавить one-to-many поле с шутками (соответсвенно поменять дто и Joke)
-    // анологично поле с коллекциями
 }

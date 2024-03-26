@@ -1,7 +1,8 @@
 package com.creep.joke_application.mapper;
 
 import com.creep.joke_application.model.Joke;
-import com.creep.joke_application.model.dto.JokeDTO;
+import com.creep.joke_application.model.dto.JokeRequestDTO;
+import com.creep.joke_application.model.dto.JokeResponseDTO;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
@@ -11,27 +12,40 @@ import java.util.Set;
 public class JokeMapper {
     private JokeMapper(){
     }
-    //todo
-    // добавить мапперы отдельно для .Response и .Request
-    public static JokeDTO toDTO(Joke joke){
+
+    public static JokeResponseDTO toDTO(Joke joke){
         if (joke == null) {
             return null;
         }
-        JokeDTO jokeDTO = new JokeDTO();
-        jokeDTO.setId(joke.getId());
-        jokeDTO.setLang(joke.getLang());
-        jokeDTO.setType(joke.getType());
-        jokeDTO.setAuthor(AuthorMapper.toDTO(joke.getAuthor()));
+        JokeResponseDTO jokeResponseDTO = new JokeResponseDTO();
+        jokeResponseDTO.setId(joke.getId());
+        jokeResponseDTO.setLang(joke.getLang());
+        jokeResponseDTO.setType(joke.getType());
+        jokeResponseDTO.setAuthor(AuthorMapper.toDTO(joke.getAuthor()));
         if (joke.getJokeCollections() != null){
             Set<Long> jokeCollectionsId = new HashSet<>();
             for (int i = 0; i < joke.getJokeCollections().size(); i++) {
                 jokeCollectionsId.add(joke.getJokeCollections().stream().toList().get(i).getId());
             }
-            jokeDTO.setJokeCollectionsId(jokeCollectionsId);
+            jokeResponseDTO.setJokeCollectionsId(jokeCollectionsId);
         }
 
-        jokeDTO.setSetup(joke.getSetup());
-        jokeDTO.setPunchline(joke.getPunchline());
-        return jokeDTO;
+        jokeResponseDTO.setSetup(joke.getSetup());
+        jokeResponseDTO.setPunchline(joke.getPunchline());
+        return jokeResponseDTO;
+    }
+
+    public static Joke toEntity(JokeRequestDTO jokeRequestDTO){
+        if (jokeRequestDTO == null){
+            return null;
+        }
+        Joke joke = new Joke();
+        joke.setLang(jokeRequestDTO.getLang());
+        joke.setType(jokeRequestDTO.getType());
+        joke.setSetup(jokeRequestDTO.getSetup());
+        joke.setPunchline(jokeRequestDTO.getPunchline());
+        joke.setJokeCollections(null);
+        joke.setAuthor(null);
+        return joke;
     }
 }

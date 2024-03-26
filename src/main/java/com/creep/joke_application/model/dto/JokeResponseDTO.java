@@ -9,14 +9,11 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class JokeDTO {
-    //todo переписать дто:
-    // сделать внутри два класса: .Response и .Request,
-    // которые содержат только нужные поля
+public class JokeResponseDTO {
     private Long id;
     private String lang;
     private String type;
-    private AuthorDTO author;
+    private AuthorResponseDTO author;
     private Set<Long> jokeCollectionsId;
     private String setup;
     private String punchline;

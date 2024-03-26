@@ -17,10 +17,8 @@ public class JokeCollection {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private String title;
     private String description;
-    //todo
-    // убедиться что надо обязательно юзать именно сет, возможно стоит поменять на сет
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
     @JoinTable(
             name = "joke_collection",

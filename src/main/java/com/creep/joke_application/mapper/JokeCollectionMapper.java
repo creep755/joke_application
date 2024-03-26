@@ -1,9 +1,10 @@
 package com.creep.joke_application.mapper;
 
 import com.creep.joke_application.model.JokeCollection;
-import com.creep.joke_application.model.dto.JokeCollectionDTO;
+import com.creep.joke_application.model.dto.JokeCollectionRequestDTO;
+import com.creep.joke_application.model.dto.JokeCollectionResponseDTO;
 
-import com.creep.joke_application.model.dto.JokeDTO;
+import com.creep.joke_application.model.dto.JokeResponseDTO;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
@@ -13,24 +14,35 @@ import java.util.Set;
 public class JokeCollectionMapper {
     private JokeCollectionMapper(){
     }
-    //todo
-    // добавить мапперы отдельно для .Response и .Request
-    public static JokeCollectionDTO toDTO(JokeCollection jokeCollection){
+
+    public static JokeCollectionResponseDTO toDTO(JokeCollection jokeCollection){
         if(jokeCollection == null) {
             return null;
         }
-        JokeCollectionDTO jokeCollectionDTO = new JokeCollectionDTO();
-        jokeCollectionDTO.setId(jokeCollection.getId());
-        jokeCollectionDTO.setName(jokeCollection.getName());
-        jokeCollectionDTO.setDescription(jokeCollection.getDescription());
+        JokeCollectionResponseDTO jokeCollectionResponseDTO = new JokeCollectionResponseDTO();
+        jokeCollectionResponseDTO.setId(jokeCollection.getId());
+        jokeCollectionResponseDTO.setTitle(jokeCollection.getTitle());
+        jokeCollectionResponseDTO.setDescription(jokeCollection.getDescription());
         if (jokeCollection.getJokes()!=null){
-            Set<JokeDTO> jokesDTO = new HashSet<>();
+            Set<JokeResponseDTO> jokesDTO = new HashSet<>();
             for (int i = 0; i < jokeCollection.getJokes().size(); i++) {
                 jokesDTO.add(JokeMapper.toDTO(jokeCollection.getJokes().stream().toList().get(i)));
             }
-            jokeCollectionDTO.setJokes(jokesDTO);
+            jokeCollectionResponseDTO.setJokes(jokesDTO);
         }
-        jokeCollectionDTO.setAuthor(AuthorMapper.toDTO(jokeCollection.getAuthor()));
-        return jokeCollectionDTO;
+        jokeCollectionResponseDTO.setAuthor(AuthorMapper.toDTO(jokeCollection.getAuthor()));
+        return jokeCollectionResponseDTO;
+    }
+
+    public static JokeCollection toEntity(JokeCollectionRequestDTO jokeCollectionRequestDTO){
+        if (jokeCollectionRequestDTO == null){
+            return null;
+        }
+        JokeCollection jokeCollection = new JokeCollection();
+        jokeCollection.setTitle(jokeCollectionRequestDTO.getTitle());
+        jokeCollection.setDescription(jokeCollectionRequestDTO.getDescription());
+        jokeCollection.setJokes(null);
+        jokeCollection.setAuthor(null);
+        return jokeCollection;
     }
 }

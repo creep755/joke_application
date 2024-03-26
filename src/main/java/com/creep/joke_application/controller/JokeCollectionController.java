@@ -1,8 +1,7 @@
 package com.creep.joke_application.controller;
 
-import com.creep.joke_application.model.Joke;
-import com.creep.joke_application.model.JokeCollection;
-import com.creep.joke_application.model.dto.JokeCollectionDTO;
+import com.creep.joke_application.model.dto.JokeCollectionRequestDTO;
+import com.creep.joke_application.model.dto.JokeCollectionResponseDTO;
 import com.creep.joke_application.service.JokeCollectionService;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,45 +11,43 @@ import java.util.List;
 @RequestMapping("/api/v1/collections")
 public class JokeCollectionController {
     private final JokeCollectionService jokeCollectionService;
-    //todo
-    // добавить MainController который будет управлять всеми контроллерами (?)
     public JokeCollectionController(JokeCollectionService jokeCollectionService){
         this.jokeCollectionService = jokeCollectionService;
     }
     @PostMapping
-    public JokeCollectionDTO postCollection(@RequestBody JokeCollection collection){
-        //todo
-        // переписать на дто
+    public JokeCollectionResponseDTO postCollection(@RequestBody JokeCollectionRequestDTO collection){
         return jokeCollectionService.postCollection(collection);
     }
 
     @GetMapping
-    public List<JokeCollectionDTO> getAllJokeCollections(){
+    public List<JokeCollectionResponseDTO> getAllJokeCollections(){
         return jokeCollectionService.getAllCollections();
     }
 
     @GetMapping("{id}")
-    public JokeCollectionDTO getJokeCollectionById(@PathVariable Long id){
+    public JokeCollectionResponseDTO getJokeCollectionById(@PathVariable Long id){
         return jokeCollectionService.getCollectionById(id);
     }
 
-    @PutMapping
-    public JokeCollectionDTO updateJokeCollection(@RequestBody JokeCollection collection){
-        //todo
-        // переписать на дто
-        return jokeCollectionService.updateCollection(collection);
+    @PutMapping("{id}")
+    public JokeCollectionResponseDTO updateJokeCollection(@PathVariable Long id, @RequestBody JokeCollectionRequestDTO jokeCollectionRequestDTO){
+        return jokeCollectionService.updateCollection(id, jokeCollectionRequestDTO);
     }
-    @PostMapping("/add-joke/{id}")
-    public JokeCollectionDTO addJoke(@PathVariable Long id, @RequestBody Joke joke){
-        //todo
-        // переписать используя два айдишника в параметрах (коллекции и шутки)
-        return jokeCollectionService.addJoke(id, joke);
+    @PutMapping("/add-joke/{collectionId}")
+    public JokeCollectionResponseDTO addJoke(@PathVariable Long collectionId, @RequestParam Long jokeId){
+        return jokeCollectionService.addJoke(collectionId, jokeId);
     }
-    @PutMapping("/remove-joke/{id}")
-    public void removeJoke(@PathVariable Long id, @RequestBody Joke joke){
-        //todo
-        // переписать используя два айдишника в параметрах (коллекции и шутки)
-        jokeCollectionService.removeJokeById(id, joke);
+    @PutMapping("/remove-joke/{collectionId}")
+    public JokeCollectionResponseDTO removeJoke(@PathVariable Long collectionId, @RequestParam Long jokeId){
+        return jokeCollectionService.removeJoke(collectionId, jokeId);
+    }
+    @PutMapping("/add-author/{collectionId}")
+    public JokeCollectionResponseDTO addAuthor(@PathVariable Long collectionId, @RequestParam Long jokeId){
+        return jokeCollectionService.addAuthor(collectionId, jokeId);
+    }
+    @PutMapping("/remove-author/{id}")
+    public JokeCollectionResponseDTO removeAuthor(@PathVariable Long id){
+        return jokeCollectionService.removeAuthor(id);
     }
     @DeleteMapping("{id}")
     public void deleteJokeCollectionById(@PathVariable Long id){

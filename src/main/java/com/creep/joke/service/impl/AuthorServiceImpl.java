@@ -20,8 +20,6 @@ public class AuthorServiceImpl implements AuthorService {
     private final AuthorRepository authorRepository;
     private final InMemoryMap cache;
     private static final String AUTHOR_KEY_PREFIX = "author id ";
-    private static final String JOKE_COLLECTION_KEY_PREFIX = "jokeCollection id ";
-    private static final String JOKE_KEY_PREFIX = "joke id ";
 
     public AuthorServiceImpl(InMemoryMap cache, AuthorRepository authorRepository){
         this.cache = cache;

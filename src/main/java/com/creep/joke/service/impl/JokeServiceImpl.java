@@ -27,8 +27,6 @@ public class JokeServiceImpl implements JokeService {
     private final InMemoryMap cache;
     private static final String JOKE_KEY_PREFIX = "joke id ";
     private static final String AUTHOR_KEY_PREFIX = "author id ";
-    private static final String JOKE_COLLECTION_KEY_PREFIX = "jokeCollection id ";
-
     @Override
     public JokeResponseDTO postJoke(JokeRequestDTO jokeRequestDTO) {
         Joke joke = JokeMapper.toEntity(jokeRequestDTO);

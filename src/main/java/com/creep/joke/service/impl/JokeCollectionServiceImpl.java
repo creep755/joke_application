@@ -73,7 +73,7 @@ public class JokeCollectionServiceImpl implements JokeCollectionService {
            return null;
        }
        jokeCollection.getJokes().add(joke);
-       cache.put("joke id "+ jokeId, joke);
+       cache.put(JOKE_KEY_PREFIX + jokeId, joke);
        cache.put(JOKE_COLLECTION_KEY_PREFIX + collectionId, jokeCollectionRepository.save(jokeCollection));
        return JokeCollectionMapper.toDTO(jokeCollection);
     }
@@ -88,7 +88,7 @@ public class JokeCollectionServiceImpl implements JokeCollectionService {
          jokeCollection.getJokes().remove(joke);
          joke.setAuthor(null);
          jokeService.saveJoke(joke);
-         cache.put("joke id " + jokeId, joke);
+         cache.put(JOKE_KEY_PREFIX + jokeId, joke);
          cache.put(JOKE_COLLECTION_KEY_PREFIX + collectionId, jokeCollection);
          return JokeCollectionMapper.toDTO(jokeCollectionRepository.save(jokeCollection));
     }
@@ -102,7 +102,7 @@ public class JokeCollectionServiceImpl implements JokeCollectionService {
         }
         jokeCollection.setAuthor(author);
         cache.put(JOKE_COLLECTION_KEY_PREFIX + collectionId, jokeCollection);
-        cache.put("author id " + authorId, author);
+        cache.put(AUTHOR_KEY_PREFIX + authorId, author);
         return JokeCollectionMapper.toDTO(jokeCollectionRepository.save(jokeCollection));
     }
 

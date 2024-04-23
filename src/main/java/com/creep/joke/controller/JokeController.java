@@ -1,69 +1,141 @@
 package com.creep.joke.controller;
 
-import com.creep.joke.model.dto.JokeRequestDTO;
-import com.creep.joke.model.dto.JokeResponseDTO;
+import com.creep.joke.model.dto.JokeRequestDto;
+import com.creep.joke.model.dto.JokeResponseDto;
 import com.creep.joke.service.JokeService;
-
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
+/** The type Joke controller. */
 @RestController
 @RequestMapping("/api/v1/jokes")
 public class JokeController {
-    private final JokeService jokeService;
+  private final JokeService jokeService;
 
-    public JokeController(JokeService jokeService) {
-        this.jokeService = jokeService;
-    }
+  /**
+   * Instantiates a new Joke controller.
+   *
+   * @param jokeService the joke service
+   */
+  public JokeController(JokeService jokeService) {
+    this.jokeService = jokeService;
+  }
 
-    @PostMapping()
-    public JokeResponseDTO postJoke(@RequestBody JokeRequestDTO jokeRequestDTO) {
-        return jokeService.postJoke(jokeRequestDTO);
-    }
+  /**
+   * Post joke joke response dto.
+   *
+   * @param jokeRequestDto the joke request dto
+   * @return the joke response dto
+   */
+  @PostMapping()
+  public JokeResponseDto postJoke(@RequestBody JokeRequestDto jokeRequestDto) {
+    return jokeService.postJoke(jokeRequestDto);
+  }
 
-    @GetMapping()
-    public List<JokeResponseDTO> getAllJokes() {
-        return jokeService.getAllJokes();
-    }
+  /**
+   * Gets all jokes.
+   *
+   * @return the all jokes
+   */
+  @GetMapping()
+  public List<JokeResponseDto> getAllJokes() {
+    return jokeService.getAllJokes();
+  }
 
-    @GetMapping("{id}")
-    public JokeResponseDTO getJokeById(@PathVariable Long id) {
-        return jokeService.findJokeById(id);
-    }
+  /**
+   * Gets joke by id.
+   *
+   * @param id the id
+   * @return the joke by id
+   */
+  @GetMapping("{id}")
+  public JokeResponseDto getJokeById(@PathVariable Long id) {
+    return jokeService.findJokeById(id);
+  }
 
-    @GetMapping("random")
-    public JokeResponseDTO getRandomJoke() {
-        return jokeService.getRandomJoke();
-    }
+  /**
+   * Gets random joke.
+   *
+   * @return the random joke
+   */
+  @GetMapping("random")
+  public JokeResponseDto getRandomJoke() {
+    return jokeService.getRandomJoke();
+  }
 
-    @GetMapping("random/{type}")
-    public JokeResponseDTO getRandomJokeByType(@PathVariable String type) {
-        return jokeService.getRandomJokeByType(type);
-    }
+  /**
+   * Gets random joke by type.
+   *
+   * @param type the type
+   * @return the random joke by type
+   */
+  @GetMapping("random/{type}")
+  public JokeResponseDto getRandomJokeByType(@PathVariable String type) {
+    return jokeService.getRandomJokeByType(type);
+  }
 
-    @PutMapping("{id}")
-    public JokeResponseDTO updateJokeById(@PathVariable Long id, @RequestBody JokeRequestDTO jokeRequestDTO) {
-        return jokeService.updateJokeById(id, jokeRequestDTO);
-    }
+  /**
+   * Update joke by id joke response dto.
+   *
+   * @param id the id
+   * @param jokeRequestDto the joke request dto
+   * @return the joke response dto
+   */
+  @PutMapping("{id}")
+  public JokeResponseDto updateJokeById(
+      @PathVariable Long id, @RequestBody JokeRequestDto jokeRequestDto) {
+    return jokeService.updateJokeById(id, jokeRequestDto);
+  }
 
-    @PutMapping("/add-author/{jokeId}")
-    public JokeResponseDTO addAuthor(@PathVariable Long jokeId, @RequestParam Long authorId) {
-        return jokeService.addAuthor(jokeId, authorId);
-    }
+  /**
+   * Add author joke response dto.
+   *
+   * @param jokeId the joke id
+   * @param authorId the author id
+   * @return the joke response dto
+   */
+  @PutMapping("/add-author/{jokeId}")
+  public JokeResponseDto addAuthor(@PathVariable Long jokeId, @RequestParam Long authorId) {
+    return jokeService.addAuthor(jokeId, authorId);
+  }
 
-    @PutMapping("/remove-author/{id}")
-    public JokeResponseDTO removeAuthor(@PathVariable Long id) {
-        return jokeService.removeAuthor(id);
-    }
+  /**
+   * Remove author joke response dto.
+   *
+   * @param id the id
+   * @return the joke response dto
+   */
+  @PutMapping("/remove-author/{id}")
+  public JokeResponseDto removeAuthor(@PathVariable Long id) {
+    return jokeService.removeAuthor(id);
+  }
 
-    @DeleteMapping("{id}")
-    public void deleteJoke(@PathVariable Long id) {
-        jokeService.deleteJoke(id);
-    }
+  /**
+   * Delete joke.
+   *
+   * @param id the id
+   */
+  @DeleteMapping("{id}")
+  public void deleteJoke(@PathVariable Long id) {
+    jokeService.deleteJoke(id);
+  }
 
-    @GetMapping("/search")
-    public List<JokeResponseDTO> searchJokesByAuthorNation(@RequestParam String nation) {
-        return jokeService.searchAllByAuthorNation(nation);
-    }
+  /**
+   * Search jokes by author nation list.
+   *
+   * @param nation the nation
+   * @return the list
+   */
+  @GetMapping("/search")
+  public List<JokeResponseDto> searchJokesByAuthorNation(@RequestParam String nation) {
+    return jokeService.searchAllByAuthorNation(nation);
+  }
 }

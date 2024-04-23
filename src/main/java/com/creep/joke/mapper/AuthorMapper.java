@@ -1,35 +1,47 @@
 package com.creep.joke.mapper;
 
 import com.creep.joke.model.Author;
-import com.creep.joke.model.dto.AuthorRequestDTO;
-import com.creep.joke.model.dto.AuthorResponseDTO;
+import com.creep.joke.model.dto.AuthorRequestDto;
+import com.creep.joke.model.dto.AuthorResponseDto;
 import org.springframework.stereotype.Component;
 
+/** The type Author mapper. */
 @Component
 public class AuthorMapper {
-    private AuthorMapper(){
-    }
+  private AuthorMapper() {}
 
-    public static AuthorResponseDTO toDTO(Author author){
-        if (author == null){
-            return null;
-        }
-        AuthorResponseDTO authorResponseDTO = new AuthorResponseDTO();
-        authorResponseDTO.setId(author.getId());
-        authorResponseDTO.setFirstName(author.getFirstName());
-        authorResponseDTO.setLastName(author.getLastName());
-        authorResponseDTO.setNation(author.getNation());
-        return authorResponseDTO;
+  /**
+   * To dto author response dto.
+   *
+   * @param author the author
+   * @return the author response dto
+   */
+  public static AuthorResponseDto toDto(Author author) {
+    if (author == null) {
+      return null;
     }
+    AuthorResponseDto authorResponseDto = new AuthorResponseDto();
+    authorResponseDto.setId(author.getId());
+    authorResponseDto.setFirstName(author.getFirstName());
+    authorResponseDto.setLastName(author.getLastName());
+    authorResponseDto.setNation(author.getNation());
+    return authorResponseDto;
+  }
 
-    public static Author toEntity(AuthorRequestDTO authorRequestDTO){
-        if(authorRequestDTO == null){
-            return null;
-        }
-        Author author = new Author();
-        author.setFirstName(authorRequestDTO.getFirstName());
-        author.setLastName(authorRequestDTO.getLastName());
-        author.setNation(authorRequestDTO.getNation());
-        return author;
+  /**
+   * To entity author.
+   *
+   * @param authorRequestDto the author request dto
+   * @return the author
+   */
+  public static Author toEntity(AuthorRequestDto authorRequestDto) {
+    if (authorRequestDto == null) {
+      return null;
     }
+    Author author = new Author();
+    author.setFirstName(authorRequestDto.getFirstName());
+    author.setLastName(authorRequestDto.getLastName());
+    author.setNation(authorRequestDto.getNation());
+    return author;
+  }
 }

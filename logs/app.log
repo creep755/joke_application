@@ -4728,3 +4728,29 @@ java.lang.NullPointerException: setup is marked non-null but is null
 2024-04-23 04:13:44.488  INFO 24540 --- [ionShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2024-04-23 04:13:44.491  INFO 24540 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2024-04-23 04:13:44.494  INFO 24540 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-04-23 04:31:14.063  INFO 12908 --- [           main] com.creep.joke.JokeApplication           : Starting JokeApplication using Java 21.0.2 with PID 12908 (C:\work\java\joke_application\target\classes started by mikha in C:\work\java\joke_application)
+2024-04-23 04:31:14.065  INFO 12908 --- [           main] com.creep.joke.JokeApplication           : No active profile set, falling back to 1 default profile: "default"
+2024-04-23 04:31:15.126  INFO 12908 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-04-23 04:31:15.220  INFO 12908 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 82 ms. Found 3 JPA repository interfaces.
+2024-04-23 04:31:16.251  INFO 12908 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-04-23 04:31:16.274  INFO 12908 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-23 04:31:16.275  INFO 12908 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-04-23 04:31:16.375  INFO 12908 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-23 04:31:16.376  INFO 12908 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2256 ms
+2024-04-23 04:31:16.642  INFO 12908 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-04-23 04:31:16.712  INFO 12908 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-04-23 04:31:16.758  INFO 12908 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-04-23 04:31:17.075  INFO 12908 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-04-23 04:31:17.111  INFO 12908 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-04-23 04:31:17.302  INFO 12908 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@dbc7e0a
+2024-04-23 04:31:17.304  INFO 12908 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-04-23 04:31:17.346  WARN 12908 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-04-23 04:31:18.817  INFO 12908 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-04-23 04:31:18.986  INFO 12908 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-04-23 04:31:19.653  INFO 12908 --- [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-04-23 04:31:20.315  WARN 12908 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-04-23 04:31:21.617  INFO 12908 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-04-23 04:31:21.627  INFO 12908 --- [           main] com.creep.joke.JokeApplication           : Started JokeApplication in 8.216 seconds (process running for 9.059)
+2024-04-23 04:32:26.345  INFO 12908 --- [ionShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-04-23 04:32:26.349  INFO 12908 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-04-23 04:32:26.368  INFO 12908 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

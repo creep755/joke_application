@@ -16,7 +16,6 @@ import java.util.Random;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-
 /** The type Joke service. */
 @Service
 @AllArgsConstructor
@@ -36,6 +35,11 @@ public class JokeServiceImpl implements JokeService {
       return null;
     }
     return JokeMapper.toDto(jokeRepository.save(joke));
+  }
+
+  @Override
+  public List<JokeResponseDto> postListOfJokes(List<JokeRequestDto> jokeRequestDtoList) {
+    return jokeRequestDtoList.stream().map(this::postJoke).toList();
   }
 
   @Override

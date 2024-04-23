@@ -18,6 +18,14 @@ public interface JokeService {
   JokeResponseDto postJoke(JokeRequestDto jokeRequestDto);
 
   /**
+   * Post list of jokes list.
+   *
+   * @param jokeRequestDtoList the joke request dto list
+   * @return the list
+   */
+  List<JokeResponseDto> postListOfJokes(List<JokeRequestDto> jokeRequestDtoList);
+
+  /**
    * Save joke joke.
    *
    * @param joke the joke

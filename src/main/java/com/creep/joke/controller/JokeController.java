@@ -41,6 +41,18 @@ public class JokeController {
   }
 
   /**
+   * Post list of jokes list.
+   *
+   * @param jokeRequestDtoList the joke request dto list
+   * @return the list
+   */
+  @PostMapping("list")
+  public List<JokeResponseDto> postListOfJokes(
+      @RequestBody List<JokeRequestDto> jokeRequestDtoList) {
+    return jokeService.postListOfJokes(jokeRequestDtoList);
+  }
+
+  /**
    * Gets all jokes.
    *
    * @return the all jokes

@@ -62,7 +62,9 @@ public class JokeServiceImpl implements JokeService {
     if (cache.containsKey(JOKE_KEY_PREFIX + id)) {
       return JokeMapper.toDto((Joke) cache.get(JOKE_KEY_PREFIX + id));
     }
-    return JokeMapper.toDto(jokeRepository.findJokeById(id));
+    Joke joke = jokeRepository.findJokeById(id);
+    cache.put(JOKE_KEY_PREFIX + id, joke);
+    return JokeMapper.toDto(joke);
   }
 
   @Override
@@ -101,7 +103,7 @@ public class JokeServiceImpl implements JokeService {
   public JokeResponseDto addAuthor(Long jokeId, Long authorId) {
     Joke joke = jokeRepository.findJokeById(jokeId);
     Author author = authorService.getRawAuthorById(authorId);
-    if (joke == null || author == null) {
+    if (joke == null) {
       return null;
     }
     joke.setAuthor(author);
@@ -113,7 +115,7 @@ public class JokeServiceImpl implements JokeService {
   @Override
   public JokeResponseDto removeAuthor(Long id) {
     Joke joke = jokeRepository.findJokeById(id);
-    if (joke == null || joke.getAuthor() == null) {
+    if (joke == null) {
       return null;
     }
     joke.setAuthor(null);

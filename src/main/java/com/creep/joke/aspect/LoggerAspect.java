@@ -27,7 +27,6 @@ public class LoggerAspect {
 
     try {
       Object result = joinPoint.proceed();
-
       log.info("Exiting controller method: {}.{}", className, methodName);
       return result;
     } catch (Exception e) {

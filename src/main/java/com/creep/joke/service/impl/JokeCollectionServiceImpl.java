@@ -13,6 +13,8 @@ import com.creep.joke.service.JokeCollectionService;
 import com.creep.joke.service.JokeService;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -55,6 +57,14 @@ public class JokeCollectionServiceImpl implements JokeCollectionService {
     JokeCollection jokeCollection = jokeCollectionRepository.findJokeCollectionById(id);
     cache.put(JOKE_COLLECTION_KEY_PREFIX + id, jokeCollection);
     return JokeCollectionMapper.toDto(jokeCollection);
+  }
+
+  @Override
+  public List<JokeCollectionResponseDto> getCollectionsByTitle(String title) {
+    return jokeCollectionRepository.findAll().stream()
+        .filter(jokeCollection -> Objects.equals(jokeCollection.getTitle(), title))
+        .map(JokeCollectionMapper::toDto)
+        .toList();
   }
 
   @Override

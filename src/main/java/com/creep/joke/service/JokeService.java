@@ -63,6 +63,7 @@ public interface JokeService {
    */
   JokeResponseDto getRandomJokeByType(String type);
 
+  List<JokeResponseDto> getJokesByAuthorId(Long id);
   /**
    * Gets raw joke by id.
    *

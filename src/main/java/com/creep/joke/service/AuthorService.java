@@ -40,6 +40,7 @@ public interface AuthorService {
    */
   Author getRawAuthorById(Long id);
 
+  List<AuthorResponseDto> getAuthorByName(String name);
   /**
    * Update author author response dto.
    *

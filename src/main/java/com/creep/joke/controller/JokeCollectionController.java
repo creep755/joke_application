@@ -62,6 +62,10 @@ public class JokeCollectionController {
     return jokeCollectionService.getCollectionById(id);
   }
 
+  @GetMapping("/get-by-title")
+  public List<JokeCollectionResponseDto> getJokeCollectionsByTitle(@RequestParam String title){
+    return jokeCollectionService.getCollectionsByTitle(title);
+  }
   /**
    * Update joke collection joke collection response dto.
    *

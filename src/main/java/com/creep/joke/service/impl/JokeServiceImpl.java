@@ -12,6 +12,7 @@ import com.creep.joke.service.AuthorService;
 import com.creep.joke.service.JokeService;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -78,6 +79,20 @@ public class JokeServiceImpl implements JokeService {
   public JokeResponseDto getRandomJokeByType(String type) {
     var jokeList = jokeRepository.findAllByType(type);
     return JokeMapper.toDto(jokeList.get(rand.nextInt(0, jokeList.size())));
+  }
+
+  @Override
+  public List<JokeResponseDto> getJokesByAuthorId(Long id) {
+    List<Joke> jokeList = jokeRepository.findAll();
+    List<JokeResponseDto> resultList = new ArrayList<>();
+    for(Joke joke : jokeList){
+      if (joke.getAuthor() != null) {
+        if (Objects.equals(joke.getAuthor().getId(), id)){
+          resultList.add(JokeMapper.toDto(joke));
+        }
+      }
+    }
+    return resultList;
   }
 
   @Override

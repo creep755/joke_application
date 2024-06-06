@@ -73,6 +73,10 @@ public class JokeController {
     return jokeService.findJokeById(id);
   }
 
+  @GetMapping("author/{id}")
+  public List<JokeResponseDto> getJokesByAuthorId(@PathVariable Long id){
+    return jokeService.getJokesByAuthorId(id);
+  }
   /**
    * Gets random joke.
    *

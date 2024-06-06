@@ -32,6 +32,7 @@ public interface JokeCollectionService {
    */
   JokeCollectionResponseDto getCollectionById(Long id);
 
+  List<JokeCollectionResponseDto> getCollectionsByTitle(String title);
   /**
    * Update collection joke collection response dto.
    *

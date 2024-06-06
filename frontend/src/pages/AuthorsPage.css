@@ -1,0 +1,122 @@
+.author-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: #8f3eb2;
+}
+
+.author-header {
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    color: #8f3eb2;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.author-list {
+    margin-left: 200px;
+    width: calc(100% - 220px);
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.author-card {
+    background-color: #353f49 !important;
+    color: #8f3eb2 !important;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s;
+}
+
+.author-card:hover {
+    transform: scale(1.02);
+}
+
+.card-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.joke-card {
+    background-color: #2c2f36;
+    border: 1px solid #8f3eb2;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.joke-text {
+    color: #8f3eb2;
+}
+
+.loading-container, .error-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #8f3eb2;
+}
+
+.dialog-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: #353f49 !important;
+}
+
+.input-field {
+    margin-bottom: 20px;
+    background-color: #2c2f36 !important;
+    color: #8f3eb2 !important;
+}
+
+.input-field .MuiOutlinedInput-root {
+    fieldset {
+        border-color: #8f3eb2 !important;
+    }
+    input {
+        color: #8f3eb2 !important;
+    }
+}
+
+.input-field .MuiInputLabel-root {
+    color: #8f3eb2 !important;
+}
+
+.dialog-button {
+    background-color: #ab56da;
+    color: #fff;
+    transition: background-color 0.3s;
+}
+
+.dialog-button:hover {
+    background-color: #b642a4;
+}
+
+.add-author-button {
+    background-color: #ab56da !important;
+    color: #fff !important;
+    position: fixed!important;
+    top: 80px !important;
+    left: 250px !important;
+    transition: background-color 0.3s !important;
+    z-index: 1000 !important; /* Ensure button stays on top of other elements */
+}
+
+.add-author-button:hover {
+    background-color: #b642a4 !important;
+}
+
+.icon-button {
+    color: #ffffff !important;
+}
+
+/* Additional styles to ensure top and bottom parts of the dialog are correctly colored */
+.MuiDialogTitle-root, .MuiDialogActions-root {
+    background-color: #353f49 !important;
+    color: #8f3eb2 !important;
+}

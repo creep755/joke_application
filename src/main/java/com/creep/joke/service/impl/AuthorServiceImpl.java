@@ -11,8 +11,8 @@ import com.creep.joke.repository.AuthorRepository;
 import com.creep.joke.service.AuthorService;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import org.springframework.stereotype.Service;
-
 
 /** The type Author service. */
 @Service
@@ -52,6 +52,14 @@ public class AuthorServiceImpl implements AuthorService {
   @Override
   public Author getRawAuthorById(Long id) {
     return authorRepository.findAuthorById(id);
+  }
+
+  @Override
+  public List<AuthorResponseDto> getAuthorByName(String name) {
+    return authorRepository.findAll().stream()
+        .filter(author -> Objects.equals(author.getFirstName(), name))
+        .map(AuthorMapper::toDto)
+        .toList();
   }
 
   @Override

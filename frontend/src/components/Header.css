@@ -1,0 +1,47 @@
+/* Header.css */
+.header {
+    background-color: #353f49;
+    width: 100%;
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    color: #8f3eb2;
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.nav-list {
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.nav-item {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.nav-item a {
+    color: #b642a4;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.nav-item a:hover {
+    text-decoration: underline;
+}
+
+.nav-logo {
+    vertical-align: middle;
+    margin-right: 8px;
+}

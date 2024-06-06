@@ -1,0 +1,20 @@
+{
+  "short_name": "Joker",
+  "name": "Joke Application",
+  "icons": [
+    {
+      "src": "joker.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "instagram.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#8f3eb2",
+  "background_color": "#353F49"
+}

@@ -1,0 +1,74 @@
+/* HomePage.css */
+.loading-container, .error-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #8f3eb2;
+}
+
+.joke-container {
+    margin-top: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.joke-card {
+    background-color: #353f49 !important; /* Добавляем !important для повышения приоритета */
+    color: #8f3eb2 !important; /* Добавляем !important для повышения приоритета */
+}
+
+.joke-text {
+    margin-bottom: 10px;
+    font-family: 'Arial', sans-serif;
+}
+
+.neon-text {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: 'Arial', sans-serif;
+    color: #fbe1ff;
+    text-shadow: 0 0 1px #8f3eb2, 0 0 2px #8f3eb2, 0 0 3px #8f3eb2, 0 0 5px #ff00ff, 0 0 7px #ff00ff, 0 0 10px #ff00ff, 0 0 12px #ff00ff, 0 0 15px #ff00ff;
+}
+
+.neon-button {
+    margin-top: 10px;
+    border-radius: 50px; /* Делаем кнопку овальной */
+    background-color: #ab56da; /* Устанавливаем цвет фона кнопки */
+    color: #fff; /* Устанавливаем цвет текста кнопки */
+    padding: 5px 15px; /* Устанавливаем отступы внутри кнопки */
+    font-size: 16px; /* Устанавливаем размер шрифта */
+    border: none; /* Убираем границу кнопки */
+    cursor: pointer; /* Устанавливаем указатель при наведении на кнопку */
+    transition: all 0.3s ease; /* Добавляем плавное изменение при наведении */
+    animation: pulse 2s infinite, changeColor 5s infinite; /* Запускаем анимацию */
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1); /* Начальный размер кнопки */
+    }
+    50% {
+        transform: scale(1.15); /* Увеличиваем размер кнопки на 5% */
+    }
+    100% {
+        transform: scale(1); /* Возвращаем кнопке исходный размер */
+    }
+}
+
+@keyframes changeColor {
+    0% {
+        background-color: #ab56da; /* Начальный цвет кнопки */
+    }
+    50% {
+        background-color: #b642a4; /* Изменяем цвет кнопки на полпути */
+    }
+    100% {
+        background-color: #ab56da; /* Возвращаем кнопке исходный цвет */
+    }
+}
+
+.neon-button:hover {
+    background-color: #b642a4; /* Изменяем цвет фона при наведении */
+}

@@ -1,0 +1,31 @@
+/* Footer.css */
+.footer {
+    background-color: #26292f;
+    color: #8f3eb2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+.footer p {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+}
+
+.footer a {
+    color: #b642a4;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+.footer-icon {
+    margin-left: 10px;
+    vertical-align: middle;
+}
